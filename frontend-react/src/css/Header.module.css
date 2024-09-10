@@ -1,0 +1,33 @@
+nav{
+    padding: 10px 20px ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1{
+    background-color:yellow;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.features{
+    flex-grow: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 5%;
+    align-items: center;
+}
+
+.features a:active{
+    text-decoration: underline;
+    font-size: large;
+}
+
+
+.icons{
+    display: flex;
+    justify-content: space-between;
+    column-gap:20px;
+}
