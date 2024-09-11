@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 export default function Header() {
   return (
     <nav id="header">
-      <div id="logo">
+      <div className={styles.logo}>
         <h1>ZAIKA</h1>
       </div>
       <div className={styles.features}>

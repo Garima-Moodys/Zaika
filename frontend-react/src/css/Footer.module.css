@@ -1,0 +1,29 @@
+
+
+.footer{
+    box-sizing: border-box;
+    color: white;
+    background-color: black;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.footer table{
+    width: 100%;
+}
+
+.footer th{
+    padding-bottom: 10px;
+}
+.footer th {
+    font-size: 1.2em;
+}
+
+.footer > p{
+    width: 100%;
+    color: black;
+    padding: 10px 0px;
+    background-color: lightgray;
+    margin-top: 50px;
+
+}

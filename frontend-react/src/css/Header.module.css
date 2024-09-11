@@ -5,8 +5,8 @@ nav{
     align-items: center;
 }
 
-h1{
-    background-color:yellow;
+.logo{
+    border:2px solid black;
     border-radius: 5px;
     padding: 5px;
 }
@@ -29,5 +29,6 @@ h1{
 .icons{
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
     column-gap:20px;
 }
