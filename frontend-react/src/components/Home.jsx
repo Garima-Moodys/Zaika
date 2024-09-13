@@ -62,8 +62,8 @@ function SectionContact(){
         <div>
             <form onSubmit={handleForm}>
                 <input type="text" placeholder='Your Name'></input>
-                <input type="email" placeholder='Your Email'></input>
-                <textarea rows="5" placeholder='Your Message'></textarea>
+                <input type="email" placeholder='Your Email' required></input>
+                <textarea rows="5" placeholder='Your Message' required></textarea>
                 <button>SEND MESSAGE</button>
             </form>
         </div>

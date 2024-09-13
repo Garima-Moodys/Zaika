@@ -1,0 +1,37 @@
+.book button {
+  background-color: yellow;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: bolder;
+  font-size: large;
+  color: black;
+}
+
+.book {
+  display: flex;
+  justify-content: space-between;
+  margin: 5%;
+}
+
+.book div {
+  flex: 1;
+}
+
+.book form {
+  color: grey;
+}
+
+.book input,
+.book select {
+  border: 1px solid grey;
+  border-radius: 5px;
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+.book img {
+  border-radius: 10%;
+  height: 350px;
+  width: 100%;
+}
