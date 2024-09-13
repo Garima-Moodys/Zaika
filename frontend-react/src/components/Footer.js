@@ -5,17 +5,19 @@ export default function Footer() {
     <div className={styles.footer}>
       <table>
         <thead>
-          <th>LOCATIONS</th>
-          <th>OPEN HOURS</th>
-          <th></th>
+          <tr>
+            <th>LOCATION</th>
+            <th>OPEN HOURS</th>
+            <th></th>
+          </tr>
         </thead>
         <tbody>
           <tr>
-            <td columnspan="2">
-              <p>XYZ Main Street, Rajouri Garden, New Delhi,110034</p>
-              <p>ABC Main Market, Gurgaon,110045</p>
+            <td>
+              <p>XYZ Main Street, Rajouri Garden</p>
+              <p>New Delhi, 110034</p>
             </td>
-            <td columnspan="2">
+            <td>
               <p>Monday-Thursday: 10:00 AM - 10:00 PM</p>
               <p>Friday-Sunday: 10:00 AM - 11:00 PM</p>
             </td>

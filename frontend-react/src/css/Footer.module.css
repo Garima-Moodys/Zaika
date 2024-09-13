@@ -22,8 +22,10 @@
 .footer > p{
     width: 100%;
     color: black;
-    padding: 10px 0px;
+    padding: 10px;
     background-color: lightgray;
     margin-top: 50px;
+    font-size: 1em;
+    text-align: left;
 
 }
