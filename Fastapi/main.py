@@ -1,10 +1,9 @@
 from fastapi import FastAPI,Depends,HTTPException
 from typing import Annotated
-from sqlalchemy.orm import Session
-from pydantic import BaseModel
 from database import SessionLocal, engine
 import models
 from fastapi.middleware.cors import CORSMiddleware
+from routers import auth, users, contact, booking, cart
 
 app = FastAPI()
 
@@ -20,17 +19,11 @@ app.add_middleware(
     allow_headers=['*']
 )
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-db_dependency=Annotated[Session,Depends(get_db)]
-
 models.Base.metadata.create_all(bind=engine)
+app.include_router(auth.router)
+app.include_router(users.router)
+app.include_router(contact.router)
+app.include_router(booking.router)
+app.include_router(cart.router)
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+
