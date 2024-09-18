@@ -18,9 +18,9 @@ export default function Header() {
         <a href="#">
           <ShoppingCartIcon />
         </a>
-        <a href="#">
+        <NavLink to="/login">
           <AccountCircleIcon />
-        </a>
+        </NavLink>
       </div>
     </nav>
   );

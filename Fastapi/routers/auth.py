@@ -12,7 +12,6 @@ from models import User
 
 router=APIRouter(prefix='/auth',tags=['auth'])
 
-
 SECRET_KEY = "34cef05d2e68c3034f000bc942c6037a5c587620e2b5c14698c5f54537ec2ea5"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
@@ -81,11 +80,6 @@ async def create_user(create_user_request:CreateUserRequest,db:db_dependency):
     db.commit()
 
 
-
-# @router.get('/getuser')
-# async def getUsers(db:db_dependency):
-#     all_users=db.query(User).all()
-#     return all_users
 
 
 
