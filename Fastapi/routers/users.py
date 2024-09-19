@@ -44,3 +44,19 @@ async def change_password(user:user_dependency,db:db_dependency,user_verificatio
     db.commit()
 
 
+@router.delete('/delete',status_code=status.HTTP_204_NO_CONTENT)
+async def delete_user(user:user_dependency,db:db_dependency):
+    if user is None:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="Could not validate")
+    current_user=db.query(User).filter(user.get('id')==User.user_id).first()
+    db.delete(current_user)
+    db.commit()
+
+@router.get('/details')
+async def getAllUsers(db:db_dependency):
+    return db.query(User).all()
+
+@router.get('/details/delete')
+async def deleteAllUsers(db:db_dependency):
+    db.query(User).delete()
+    db.commit()

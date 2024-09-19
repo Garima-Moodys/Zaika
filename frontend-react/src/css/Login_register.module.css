@@ -1,6 +1,7 @@
 .form {
-  background-color: yellow;
+  background-image: linear-gradient(to right, yellow, rgb(230, 224, 152));
   padding: 40px 0px;
+  height: 55vw;
 }
 .form > h1 {
   font-family: "Nerko One", cursive;
@@ -16,7 +17,8 @@
   background-color: white;
 }
 
-.form form {
+.form form,
+.success {
   margin: auto;
   text-align: center;
   background-color: white;
@@ -45,4 +47,20 @@
 .form a {
   margin: 0px 5px;
   text-decoration: underline;
+}
+
+.success p {
+  margin: 10px;
+  font-size: 1.2em;
+}
+
+.success h1 {
+  text-decoration: underline;
+}
+
+.success button {
+  width: 30%;
+  margin: 5px;
+  padding: 5px 10px;
+  font-size: small;
 }

@@ -72,6 +72,9 @@ class CreateUserRequest(BaseModel):
 
 @router.post('/',status_code=status.HTTP_201_CREATED)
 async def create_user(create_user_request:CreateUserRequest,db:db_dependency):
+    findUser=db.query(User).filter(User.email==create_user_request.email).first()
+    if findUser:
+        raise HTTPException(status_code=400,detail="User already exist")
     create_user_model=User(first_name=create_user_request.first_name,
                            last_name=create_user_request.last_name,
                            email=create_user_request.email,

@@ -1,6 +1,6 @@
 import React, {useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,NavLink } from 'react-router-dom';
 import styles from "../css/Login_register.module.css";
 
 
@@ -30,7 +30,8 @@ export default function Register(){
             navigate('/login');
         }catch(error){
             console.error('Error signing up:', error);
-            alert('Sign up failed. Please try again.');
+            alert('Sign up failed. Please try again.')
+            alert(error.response.data.detail);
         }finally{
             setEmail('');
             setPassword('');
@@ -47,9 +48,10 @@ export default function Register(){
             <input type="text" placeholder='First Name' value={firstName} onChange={(e)=>setFirst(e.target.value)} required></input>
             <input type="text" placeholder='Last Name' value={lastName} onChange={(e)=>setLast(e.target.value)}></input>
             <input type="email" placeholder='Email' value={email} onChange={(e)=>setEmail(e.target.value)} required></input>
-            <input type="password" placeholder='Password' value={password} onChange={(e)=>setPassword(e.target.value)} required></input>
+            <input type="password" placeholder='Password' value={password} onChange={(e)=>setPassword(e.target.value)} pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required></input>
             <input type="password" placeholder='Confirm Password' value={repassword} onChange={(e)=>setRepassword(e.target.value)} required></input>
             <p><button>SUBMIT</button></p>
+            <p style={{marginTop:"10px"}}>Already have an account?<NavLink to='/login' >Login</NavLink></p>
         </form>
     </div>
 }
