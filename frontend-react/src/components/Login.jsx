@@ -27,12 +27,12 @@ export default function Login(){
 
     const delAccount=async ()=>{
         try{
-            const res=await axios.delete('http://127.0.0.1:8000/users/delete',{
+            await axios.delete('http://127.0.0.1:8000/users/delete',{
                 headers:{
                     Authorization:`Bearer ${token}`
                 },
             });
-            logout()
+            logout();
         }catch(error){
             console.log("Unable to delete user",error);
         }
@@ -41,12 +41,14 @@ export default function Login(){
 
     return <div className={styles.form}>
         <h1>LOGIN</h1>
-        {token==null ?(<form onSubmit={handleForm}>
+        {token==null ?
+        (<form onSubmit={handleForm}>
             <input type="email" placeholder='Email' value={email} onChange={(e)=>setEmail(e.target.value)}></input>
             <input type="password" placeholder='Password' value={password} onChange={(e)=>setPassword(e.target.value)}></input>
             <p><button type="submit">SUBMIT</button></p>
             <p style={{marginTop:"10px"}}>You don't have an account?<NavLink to='/register' >Register</NavLink></p>
-        </form>):(<div className={styles.success}>
+        </form>):
+        (<div className={styles.success}>
             <p>Successfull Login!</p>
             <h1>USER DETAILS</h1>
             <p>Name : {getUser.first_name} { getUser.last_name==null? '':getUser.last_name}</p>
@@ -55,6 +57,6 @@ export default function Login(){
                 <button onClick={logout}>Logout</button>
                 <button onClick={delAccount}>Delete Account</button>
             </p>
-            </div>)}
+        </div>)}
     </div>
 }

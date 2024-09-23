@@ -33,8 +33,8 @@ class MenuItem(Base):
     __tablename__ = 'menu_items'
     
     item_id = Column(Integer, primary_key=True, index=True)
-    item_name = Column(String(100), nullable=False)
-    price = Column(DECIMAL(10, 2),default=20, nullable=False)
+    item_name = Column(String(100), unique=True,nullable=False)
+    price = Column(DECIMAL(10, 2),default=20)
 
     cart_items = relationship("Cart", back_populates="menu_item")
 
@@ -45,7 +45,7 @@ class Cart(Base):
     cart_id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey('users.user_id'))
     item_id = Column(Integer, ForeignKey('menu_items.item_id'))
-    quantity = Column(Integer, default=1, nullable=False)
+    quantity = Column(Integer,default=1)
     
     user = relationship("User", back_populates="cart_items")
     menu_item = relationship("MenuItem", back_populates="cart_items")

@@ -3,7 +3,7 @@ from typing import Annotated
 from database import SessionLocal, engine
 import models
 from fastapi.middleware.cors import CORSMiddleware
-from routers import auth, users, contact, booking, cart
+from routers import auth, users, contact, booking, cart, menu
 
 app = FastAPI()
 
@@ -25,5 +25,5 @@ app.include_router(users.router)
 app.include_router(contact.router)
 app.include_router(booking.router)
 app.include_router(cart.router)
-
+app.include_router(menu.router)
 

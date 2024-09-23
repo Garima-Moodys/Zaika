@@ -5,19 +5,22 @@ import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "@passfort/castle";
 import "@passfort/castle/lib/index.css";
 import { UserProvider } from "./context/UserContext";
+import { CartProvider } from "./context/CartContext";
 import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <ThemeProvider>
-        <UserProvider>
-          <App />
-        </UserProvider>
-      </ThemeProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <ThemeProvider>
+      <UserProvider>
+        <CartProvider>
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>
+        </CartProvider>
+      </UserProvider>
+    </ThemeProvider>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

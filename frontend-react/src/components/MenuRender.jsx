@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Spinner } from "@passfort/castle";
 import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
 import IconButton from "@mui/material/IconButton";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import styles from "../css/Menu.module.css";
+import { CartContext } from "../context/CartContext";
+
 
 function CategoryCard(props) {
   return (
@@ -36,6 +38,7 @@ function CategoryCard(props) {
 
 function FoodCard(props) {
   const [title, showTitle] = useState(false);
+  const {addItem}=useContext(CartContext);
   return (
     <li
       className={styles.foodItems}
@@ -76,8 +79,9 @@ function FoodCard(props) {
             alignItems: "center",
             justifyContent: "center",
           }}
+          onClick={(e)=>{addItem(props.strTitle)}}
         >
-          <ShoppingCartSharpIcon sx={{ fontSize: 20 }} />
+          <ShoppingCartSharpIcon sx={{ fontSize: 20 }}  />
         </button>
       </div>
     </li>
