@@ -12,16 +12,12 @@ function CartModal({ isOpen, onClose }) {
   const { items, addItem, removeItem } = useContext(CartContext);
   const [totalAmount, setAmount] = useState(0);
 
-  function totalBill() {
+  useEffect(() => {
     let amount = 0;
     for (let i = 0; i < items.length; i++) {
       amount += items[i].price * items[i].quantity;
     }
     setAmount(amount);
-  }
-
-  useEffect(() => {
-    totalBill();
   }, [items]);
 
   return (
@@ -42,7 +38,7 @@ function CartModal({ isOpen, onClose }) {
           }}
         >
           <tr>
-            <th>Item Name</th>
+            <th style={{ width: "65%" }}>Item Name</th>
             <th>Quantity</th>
             <th>Price</th>
           </tr>
@@ -52,7 +48,15 @@ function CartModal({ isOpen, onClose }) {
                 <td>{item.item_name}</td>
                 <td>
                   <button onClick={() => removeItem(item.item_name)}>-</button>
-                  <span>{item.quantity}</span>
+                  <span
+                    style={{
+                      margin: "10px",
+                      border: "1px solid black",
+                      padding: "2px 5px",
+                    }}
+                  >
+                    {item.quantity}
+                  </span>
                   <button onClick={() => addItem(item.item_name)}>+</button>
                 </td>
                 <td> $ {item.price * item.quantity}</td>
@@ -78,7 +82,7 @@ export default function Header() {
   const { token } = useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  function clickHandle(e) {
+  function clickHandle() {
     if (token == null) {
       alert("User not logged in!");
       return;

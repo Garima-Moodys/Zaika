@@ -22,6 +22,7 @@ function CategoryCard(props) {
           height: "150px",
           borderRadius: "20px 20px 0px 0px",
         }}
+        alt="loading category"
       />
       <h1
         style={{
@@ -56,6 +57,7 @@ function FoodCard(props) {
           height: "150px",
           borderRadius: "20px 20px 0px 40px",
         }}
+        alt="loading category"
       />
       {title && <h1 className={styles.menuTitle}>{props.strTitle}</h1>}
       <div
@@ -103,7 +105,7 @@ export default function MenuRender({
         <Spinner size="xl" />
       </div>
     );
-  } else if (currentContent == "categories") {
+  } else if (currentContent === "categories") {
     return (
       <ul className={styles.categories}>
         {categories.map((category) => {

@@ -7,9 +7,13 @@ export const CartContext=createContext();
 export function CartProvider({children}){
 
     const [items,setItems]=useState([]);
-    const { token } = useContext(UserContext);
+    const { token} = useContext(UserContext);
 
     useEffect(()=>{
+      if(token==null){
+        setItems([]);
+        return;
+      }
         axios
       .get("http://127.0.0.1:8000/cart/allCartitems", {
         headers: {
@@ -21,7 +25,7 @@ export function CartProvider({children}){
     },[token])
 
     const addItem = async (new_item) => {
-        const existingItemIndex=items.findIndex((item)=>new_item==item.item_name);
+        const existingItemIndex=items.findIndex((item)=>new_item===item.item_name);
         if (existingItemIndex <= -1) {
             await axios.post(`http://127.0.0.1:8000/cart/addTocart/${new_item}`,{},
                 {
@@ -51,11 +55,11 @@ export function CartProvider({children}){
     }
 
     const removeItem=async (remove_item)=>{
-        const existingItemIndex=items.findIndex((item)=>remove_item==item.item_name);
+        const existingItemIndex=items.findIndex((item)=>remove_item===item.item_name);
         const old_quantity=items[existingItemIndex].quantity;
         const updatedQuantity=old_quantity-1;
         const item_id=items[existingItemIndex].item_id;
-        if(updatedQuantity==0){
+        if(updatedQuantity===0){
             await axios.delete(`http://127.0.0.1:8000/cart/deleteFromcart/${item_id}`,
                 {
                     headers: {
