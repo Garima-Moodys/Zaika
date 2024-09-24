@@ -1,6 +1,5 @@
-from typing import Annotated, List
+from typing import Annotated
 from fastapi import APIRouter, Depends,HTTPException
-from pydantic import BaseModel
 from sqlalchemy import and_
 from sqlalchemy.orm import Session
 from starlette import status

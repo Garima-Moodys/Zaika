@@ -12,7 +12,6 @@ class User(Base):
     email = Column(String, unique=True,nullable=False)
     hashed_password = Column(String,nullable=False)
     
-    contact_messages = relationship("ContactMessage", back_populates="user")
     bookings = relationship("Booking", back_populates="user")
     cart_items = relationship("Cart", back_populates="user")
 
@@ -21,12 +20,10 @@ class ContactMessage(Base):
     __tablename__ = 'contact_messages'
     
     message_id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey('users.user_id'))
     name = Column(String(100))
     email = Column(String(100), nullable=False)
     message = Column(Text, nullable=False)
 
-    user = relationship("User", back_populates="contact_messages")
 
 
 class MenuItem(Base):

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState } from 'react';
 import Slider from 'react-slick';
 import bgImg1 from '../assests/breakfast.jpg';
 import bgImg2 from '../assests/dinner.avif';
@@ -6,6 +6,7 @@ import bgImg3 from '../assests/lunch.jpg';
 import styles from '../css/Home.module.css';
 import restaurant from '../assests/restaurant_discover.jpg';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 function Headline(){
     return <div className={styles.headline}>
@@ -48,12 +49,21 @@ function SectionMenu(){
     </div>
 }
 
-function handleForm(e){
-    e.preventDefault();
-}
 
 
 function SectionContact(){
+    const [name,setName]=useState('');
+    const [email,setEmail]=useState('');
+    const [msg,setMsg]=useState('');
+    function handleForm(e){
+        e.preventDefault();
+        axios.post('http://127.0.0.1:8000/contact/',{name:name,email:email,msg:msg})
+        .then((response)=>{alert("Form submitted successfully! Will get in touch soon."); 
+            setName('');
+            setEmail('');
+            setMsg('');})
+        .catch(error=>console.log(error))
+    }    
     return <div className={styles.contact}>
         <div>
             <h1><span style={{fontFamily:'sans-serif',color:'yellow',fontSize:'60px'}}>CONTACT </span><br/> LET'S CHAT</h1>
@@ -61,9 +71,9 @@ function SectionContact(){
         </div>
         <div>
             <form onSubmit={handleForm}>
-                <input type="text" placeholder='Your Name'></input>
-                <input type="email" placeholder='Your Email' required></input>
-                <textarea rows="5" placeholder='Your Message' required></textarea>
+                <input type="text" placeholder='Your Name' value={name} onChange={(e)=>{setName(e.target.value)}}></input>
+                <input type="email" placeholder='Your Email' value={email} onChange={(e)=>{setEmail(e.target.value)}} required></input>
+                <textarea rows="5" placeholder='Your Message' value={msg} onChange={(e)=>{setMsg(e.target.value)}}  required></textarea>
                 <button>SEND MESSAGE</button>
             </form>
         </div>
