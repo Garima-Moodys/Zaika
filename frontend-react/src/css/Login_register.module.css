@@ -1,7 +1,6 @@
 .form {
   background-image: linear-gradient(to right, yellow, rgb(230, 224, 152));
   padding: 40px 0px;
-  height: 55vw;
 }
 .form > h1 {
   font-family: "Nerko One", cursive;
@@ -17,8 +16,7 @@
   background-color: white;
 }
 
-.form form,
-.success {
+.form form {
   margin: auto;
   text-align: center;
   background-color: white;
@@ -49,18 +47,62 @@
   text-decoration: underline;
 }
 
-.success p {
-  margin: 10px;
-  font-size: 1.2em;
-}
-
-.success h1 {
-  text-decoration: underline;
+.success {
+  text-align: center;
 }
 
 .success button {
-  width: 30%;
   margin: 5px;
-  padding: 5px 10px;
-  font-size: small;
+  padding: 10px;
+  font-size: medium;
+  background-color: yellow;
+  width: 20%;
+  border-radius: 10px;
+  font-weight: bolder;
+  color: black;
+}
+
+.success ul {
+  list-style-type: none;
+  min-height: 50px;
+}
+
+.success li {
+  display: flex;
+  justify-content: space-around;
+}
+
+.success h1 {
+  font-family: "Nerko One", cursive;
+  color: black;
+  font-size: 50px;
+  padding: 2%;
+  text-decoration: underline;
+  text-align: center;
+  margin: 20px;
+}
+
+.bookCard {
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: left;
+  width: 70%;
+  margin: auto;
+  border-bottom: 2px solid white;
+}
+
+.userDetails {
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  padding: 15px;
+  width: 70%;
+  margin: auto;
+  font-size: 1.3em;
+}
+
+.userDetails p {
+  margin-bottom: 10px;
 }

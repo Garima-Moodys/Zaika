@@ -12,8 +12,8 @@ class User(Base):
     email = Column(String, unique=True,nullable=False)
     hashed_password = Column(String,nullable=False)
     
-    bookings = relationship("Booking", back_populates="user")
-    cart_items = relationship("Cart", back_populates="user")
+    bookings = relationship("Booking", back_populates="user",cascade="all,delete-orphan")
+    cart_items = relationship("Cart", back_populates="user",cascade="all,delete-orphan")
 
 
 class ContactMessage(Base):
@@ -53,7 +53,7 @@ class Booking(Base):
     
     booking_id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey('users.user_id'))
-    phone_number = Column(String(20))
+    phone_number = Column(String(20),nullable=False)
     email = Column(String(100), nullable=False)
     number_of_members = Column(Integer, nullable=False)
     booking_date = Column(Date, nullable=False)

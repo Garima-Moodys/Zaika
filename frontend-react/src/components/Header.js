@@ -44,7 +44,10 @@ function CartModal({ isOpen, onClose }) {
           </tr>
           {items.map((item) => {
             return (
-              <tr key={item.item_id} style={{ border: "1px solid" }}>
+              <tr
+                key={item.item_id}
+                style={{ border: "1px solid", padding: "10px", height: "30px" }}
+              >
                 <td>{item.item_name}</td>
                 <td>
                   <button onClick={() => removeItem(item.item_name)}>-</button>
@@ -53,6 +56,7 @@ function CartModal({ isOpen, onClose }) {
                       margin: "10px",
                       border: "1px solid black",
                       padding: "2px 5px",
+                      borderRadius: "30%",
                     }}
                   >
                     {item.quantity}
