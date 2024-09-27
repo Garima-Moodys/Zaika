@@ -10,6 +10,7 @@ export default function Login(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [bookings,setBookings]=useState([]);
+    const [orders,setOrders]=useState([]);
     
     const { login,token,logout,getUser} = useContext(UserContext);
 
@@ -74,6 +75,17 @@ export default function Login(){
             .catch((error)=>{
                 console.log(error)
             })
+        axios.get('http://127.0.0.1:8000/orders/',
+            {
+                headers:{
+                    Authorization:`Bearer ${token}`,
+                },
+            })
+            .then((response)=>setOrders(response.data))
+            .catch((error)=>{
+                console.log(error)
+            }
+        )
     },[token])
 
     return <div>
@@ -97,17 +109,37 @@ export default function Login(){
             
             <h1>BOOKING DETAILS</h1>
             <ul>
-                {bookings.length===0?<li>No table bookings done!</li>:bookings.map((booking)=>{
+                {bookings.length===0?<p>No table bookings done!</p>:bookings.map((booking)=>{
                     return <li className={styles.bookCard} key={booking.booking_id}>
                         <div>
                         <p>Email: {booking.email}</p>
-                        <p>Phone Number: {booking.phone_number}</p>
+                        <p>Contact: {booking.phone_number}</p>
                         </div>
                         <div>
                         <p>Number of members: {booking.number_of_members} </p>
                         <p>{booking.booking_date}</p>
                         </div>
                         <button onClick={()=>{delBooking(booking.booking_id)}}>Cancel booking</button>
+                        </li>
+                })}
+            </ul>
+            <h1>ORDER DETAILS</h1>
+            <ul>
+                {orders.length===0?<p>No Past Orders!</p>:orders.map((order)=>{
+                    return <li className={styles.orderCard} key={order.order_id}>
+                        <div>
+                            <ol>
+                            {order.items.map(item=>{
+                                return <li>
+                                    {item.item_name} &times;{item.quantity}
+                                </li>
+                            })}
+                            </ol>
+                        </div>
+                        <div>
+                            <p>Date: {order.order_date} </p>
+                            <p>Amount: &#8377; {order.amount}</p>
+                        </div>
                         </li>
                 })}
             </ul>

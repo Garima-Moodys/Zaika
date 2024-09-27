@@ -10,7 +10,7 @@ const PaymentForm=({totalAmount,onClose,setIsCheckingOut})=>{
     const elements=useElements();
     const [error,setError]=useState(null);
     const {token}=useContext(UserContext);
-    const {setItems}=useContext(CartContext);
+    const {items,setItems}=useContext(CartContext);
     const [loading,setLoading]=useState(false);
     const [paymentMethod,setPaymentMethod]=useState('stripe');
     const [billingAddress, setBillingAddress] = useState({
@@ -34,6 +34,7 @@ const PaymentForm=({totalAmount,onClose,setIsCheckingOut})=>{
         e.preventDefault();
         setLoading(true);
         setError(null);
+        const today = new Date().toISOString().split('T')[0];
 
         if(paymentMethod==='stripe'){
             //Retrieves card information.
@@ -53,6 +54,12 @@ const PaymentForm=({totalAmount,onClose,setIsCheckingOut})=>{
                     setError(stripeError.message);
                 } else if (paymentIntent.status === 'succeeded') {
                     alert('Payment successful!');
+                    //add order to database
+                    await axios.post('http://127.0.0.1:8000/orders/addOrder',{items:items,date:today,amount:totalAmount},{
+                        headers:{
+                            Authorization:`Bearer ${token}`
+                        }
+                    })
                     //Clears the cart upon successful payment
                     await axios.delete('http://127.0.0.1:8000/cart/deleteCartitems',{
                         headers:{
@@ -72,6 +79,13 @@ const PaymentForm=({totalAmount,onClose,setIsCheckingOut})=>{
         }else if(paymentMethod==='cash'){
             
             alert('Cash payment selected. Please prepare the cash for delivery.');
+            //add order to database
+            await axios.post('http://127.0.0.1:8000/orders/addOrder',{items:items,date:today,amount:totalAmount},{
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            })
+            //clear cart
             await axios.delete('http://127.0.0.1:8000/cart/deleteCartitems', {
                 headers: {
                     Authorization: `Bearer ${token}`,

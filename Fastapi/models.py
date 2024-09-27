@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String,Text,DECIMAL,Date
+from sqlalchemy import JSON,Column, ForeignKey, Integer, String,Text,DECIMAL,Date
 from sqlalchemy.orm import relationship
 from database import Base
 
@@ -13,6 +13,7 @@ class User(Base):
     hashed_password = Column(String,nullable=False)
     
     bookings = relationship("Booking", back_populates="user",cascade="all,delete-orphan")
+    orders = relationship("Orders", back_populates="user",cascade="all,delete-orphan")
     cart_items = relationship("Cart", back_populates="user",cascade="all,delete-orphan")
 
 
@@ -59,3 +60,14 @@ class Booking(Base):
     booking_date = Column(Date, nullable=False)
     
     user = relationship("User", back_populates="bookings")
+
+class Orders(Base):
+    __tablename__ = 'orders'
+
+    order_id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey('users.user_id'))
+    items=Column(JSON,nullable=False)
+    order_date = Column(Date, nullable=False)
+    amount=Column(Integer)
+
+    user = relationship("User", back_populates="orders")
