@@ -9,16 +9,6 @@ export const UserProvider = ({ children }) => {
     const [getUser, setUser] = useState({});
     const navigate=useNavigate();
 
-    useEffect(() => {
-        if (token) {
-            localStorage.setItem('token', token);
-            fetchUser(); 
-        } else {
-            localStorage.removeItem('token');
-            setUser({});
-        }
-    }, [token]);
-
     const fetchUser=async ()=>{
         try{
             const current_user= await axios.get('http://127.0.0.1:8000/users/', {
@@ -32,6 +22,18 @@ export const UserProvider = ({ children }) => {
             console.error('Error in fetching user details', error);
         }
     }
+
+    useEffect(() => {
+        if (token) {
+            localStorage.setItem('token', token);
+            fetchUser(); 
+        } else {
+            localStorage.removeItem('token');
+            setUser({});
+        }
+    }, [token]);
+
+    
 
     const login = async (email, password) => {
         

@@ -83,7 +83,7 @@ export function CartProvider({children}){
         }).then((response) => setItems(response.data)).catch((error) => console.log(error));
     }
 
-    return <CartContext.Provider value={{items,addItem,removeItem}}>
+    return <CartContext.Provider value={{items,addItem,removeItem,setItems}}>
         {children}
     </CartContext.Provider>
 }

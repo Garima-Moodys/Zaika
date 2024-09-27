@@ -1,9 +1,8 @@
-from fastapi import FastAPI,Depends,HTTPException
-from typing import Annotated
-from database import SessionLocal, engine
+from fastapi import FastAPI
+from database import engine
 import models
 from fastapi.middleware.cors import CORSMiddleware
-from routers import auth, users, contact, booking, cart, menu
+from routers import auth, users, contact, booking, cart, menu, payment
 
 app = FastAPI()
 
@@ -26,4 +25,5 @@ app.include_router(contact.router)
 app.include_router(booking.router)
 app.include_router(cart.router)
 app.include_router(menu.router)
+app.include_router(payment.router)
 

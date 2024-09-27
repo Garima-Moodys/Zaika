@@ -14,7 +14,7 @@ router=APIRouter(prefix='/auth',tags=['auth'])
 
 SECRET_KEY = "34cef05d2e68c3034f000bc942c6037a5c587620e2b5c14698c5f54537ec2ea5"
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
 oauth2_scheme=OAuth2PasswordBearer(tokenUrl="auth/token")
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -33,7 +33,7 @@ def create_access_token(email:EmailStr,user_id:int, expires_delta: timedelta | N
     if expires_delta:
         expire = datetime.now(timezone.utc) + expires_delta
     else:
-        expire = datetime.now(timezone.utc) + timedelta(minutes=15)
+        expire = datetime.now(timezone.utc) + timedelta(minutes=60)
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt

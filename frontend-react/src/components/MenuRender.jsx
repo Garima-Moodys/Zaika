@@ -69,7 +69,7 @@ function FoodCard(props) {
           alignItems: "center",
         }}
       >
-        <p>$ {props.price}</p>
+        <p>&#8377; {props.price}</p>
         <button
           style={{
             height: "40px",
