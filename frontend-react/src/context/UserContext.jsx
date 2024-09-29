@@ -16,7 +16,7 @@ export const UserProvider = ({ children }) => {
                         Authorization: `Bearer ${token}`,
                     },
             })
-            console.log(current_user.data);
+            //console.log(current_user.data);
             setUser(current_user.data);
         }catch(error){
             console.error('Error in fetching user details', error);

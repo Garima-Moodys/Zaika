@@ -24,10 +24,6 @@ export default function CartModal({ isOpen, onClose }) {
     setAmount(amount);
   }, [items]);
 
-  const handleCheckout = () => {
-    setIsCheckingOut(true);
-  };
-
   return (
     <Modal
       title={isCheckingOut ? "Checkout" : "Your Cart"}
@@ -43,7 +39,7 @@ export default function CartModal({ isOpen, onClose }) {
             onClick={() => setIsCheckingOut(false)}
           ></Button>
         ) : (
-          <Button label="Checkout" type="primary" onClick={handleCheckout} />
+          <Button label="Checkout" type="primary" onClick={()=>setIsCheckingOut(true)} />
         )
       }
     >

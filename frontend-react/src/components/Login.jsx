@@ -106,23 +106,24 @@ export default function Login(){
                 <p>Name : {getUser.first_name} { getUser.last_name==null? '':getUser.last_name}</p>
                 <p>Email : {getUser.email}</p>
             </div>
-            
+            <hr style={{height:'1px',backgroundColor:'gray',marginTop:'5px'}}/>
             <h1>BOOKING DETAILS</h1>
             <ul>
                 {bookings.length===0?<p>No table bookings done!</p>:bookings.map((booking)=>{
                     return <li className={styles.bookCard} key={booking.booking_id}>
                         <div>
-                        <p>Email: {booking.email}</p>
-                        <p>Contact: {booking.phone_number}</p>
+                            <p>Email: {booking.email}</p>
+                            <p>Contact: {booking.phone_number}</p>
                         </div>
                         <div>
-                        <p>Number of members: {booking.number_of_members} </p>
-                        <p>{booking.booking_date}</p>
+                            <p>Number of members: {booking.number_of_members} </p>
+                            <p>{booking.booking_date}</p>
                         </div>
                         <button onClick={()=>{delBooking(booking.booking_id)}}>Cancel booking</button>
                         </li>
                 })}
             </ul>
+            <hr style={{height:'1px',backgroundColor:'gray',marginTop:'5px'}}/>
             <h1>ORDER DETAILS</h1>
             <ul>
                 {orders.length===0?<p>No Past Orders!</p>:orders.map((order)=>{
@@ -143,6 +144,7 @@ export default function Login(){
                         </li>
                 })}
             </ul>
+            <hr style={{height:'1px',backgroundColor:'gray',marginTop:'5px'}}/>
             <p style={{margin:'20px'}}>
                 <button onClick={logout}>Logout</button>
                 <button onClick={delAccount}>Delete Account</button>
