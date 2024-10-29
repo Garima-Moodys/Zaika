@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { UserContext } from "./context/UserContext";
 import { useContext } from "react";
+import Reviews from "./components/Reviews";
 
 function App() {
   const { token } = useContext(UserContext);
@@ -30,6 +31,12 @@ function App() {
         ></Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route
+          path="/reviews"
+          element={
+            token == null ? <Navigate to="/login" replace /> : <Reviews />
+          }
+        />
       </Routes>
       <Footer />
     </>

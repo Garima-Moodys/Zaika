@@ -1,0 +1,56 @@
+.heading {
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.heading button {
+  padding: 5px 30px;
+  color: white;
+  background-color: black;
+  text-transform: uppercase;
+  font-size: small;
+}
+
+.heading > h1 {
+  font-family: "Nerko One", cursive;
+  color: black;
+  font-size: 50px;
+  margin: 5% 5% 3% 5%;
+  padding: 2%;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.reviewsSection {
+  margin: 3% 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reviewsSection > div:first-child {
+  width: 80%;
+}
+
+.reviews {
+  border: 1px solid black;
+  margin-top: 10px;
+  width: 80%;
+}
+
+.reviewBox {
+  display: flex;
+  text-align: justify;
+  border: 1px solid black;
+  margin: 10px;
+}
+
+.reviewBox div:first-child {
+  min-width: 25%;
+  background-color: blanchedalmond;
+}
+
+.reviewBox div {
+  padding: 25px;
+}

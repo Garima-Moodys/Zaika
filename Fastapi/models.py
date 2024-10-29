@@ -15,6 +15,7 @@ class User(Base):
     bookings = relationship("Booking", back_populates="user",cascade="all,delete-orphan")
     orders = relationship("Orders", back_populates="user",cascade="all,delete-orphan")
     cart_items = relationship("Cart", back_populates="user",cascade="all,delete-orphan")
+    reviews = relationship("Reviews", back_populates="user",cascade="all,delete-orphan")
 
 
 class ContactMessage(Base):
@@ -24,7 +25,6 @@ class ContactMessage(Base):
     name = Column(String(100))
     email = Column(String(100), nullable=False)
     message = Column(Text, nullable=False)
-
 
 
 class MenuItem(Base):
@@ -71,3 +71,14 @@ class Orders(Base):
     amount=Column(Integer)
 
     user = relationship("User", back_populates="orders")
+
+
+class Reviews(Base):
+    __tablename__='reviews'
+
+    review_id=Column(Integer,primary_key=True,index=True)
+    stars=Column(Integer,nullable=False)
+    description=Column(String,nullable=False)
+    user_id=Column(Integer,ForeignKey('users.user_id'))
+
+    user = relationship("User", back_populates="reviews")

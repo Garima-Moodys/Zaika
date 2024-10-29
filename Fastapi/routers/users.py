@@ -56,6 +56,13 @@ async def delete_user(user:user_dependency,db:db_dependency):
 async def getAllUsers(db:db_dependency):
     return db.query(User).all()
 
+@router.get('/userDetails')
+async def getUserById(db:db_dependency,user_id:int):
+    user_details=db.query(User).filter(User.user_id==user_id).first()
+    if(not user_details):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="User not found")
+    return user_details
+
 @router.get('/details/delete')
 async def deleteAllUsers(db:db_dependency):
     db.query(User).delete()
