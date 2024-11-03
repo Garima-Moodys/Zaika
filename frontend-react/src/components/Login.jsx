@@ -140,6 +140,7 @@ export default function Login(){
                         <div>
                             <p>Date: {order.order_date} </p>
                             <p>Amount: &#8377; {order.amount}</p>
+                            {order.payment_mode && <p>Payment Mode: {order.payment_mode=='cash'?"cash":"online"}</p>}
                         </div>
                         </li>
                 })}

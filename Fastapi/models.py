@@ -69,6 +69,7 @@ class Orders(Base):
     items=Column(JSON,nullable=False)
     order_date = Column(Date, nullable=False)
     amount=Column(Integer)
+    payment_mode=Column(String)
 
     user = relationship("User", back_populates="orders")
 

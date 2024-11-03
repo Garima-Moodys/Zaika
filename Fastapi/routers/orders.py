@@ -29,6 +29,7 @@ class CreateOrder(BaseModel):
     items:list[Item]
     date:date
     amount:int
+    mode:str
 
 
 @router.post('/addOrder',status_code=status.HTTP_201_CREATED)
@@ -36,7 +37,7 @@ async def createOrder(db:db_dependency,user:user_dependency,order:CreateOrder):
     if not user:
         raise HTTPException(status.HTTP_401_UNAUTHORIZED,detail="Not Authorized")
     items_data = [{"item_name": item.item_name, "quantity": item.quantity} for item in order.items]
-    create_order=Orders(user_id=user.get('id'),items=items_data,order_date=order.date,amount=order.amount)
+    create_order=Orders(user_id=user.get('id'),items=items_data,order_date=order.date,amount=order.amount,payment_mode=order.mode)
     db.add(create_order)
     db.commit()
 

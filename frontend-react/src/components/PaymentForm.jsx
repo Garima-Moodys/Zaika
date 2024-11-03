@@ -55,7 +55,7 @@ const PaymentForm=({totalAmount,onClose,setIsCheckingOut})=>{
                 } else if (paymentIntent.status === 'succeeded') {
                     alert('Payment successful!');
                     //add order to database
-                    await axios.post('http://127.0.0.1:8000/orders/addOrder',{items:items,date:today,amount:totalAmount},{
+                    await axios.post('http://127.0.0.1:8000/orders/addOrder',{items:items,date:today,amount:totalAmount,mode:paymentMethod},{
                         headers:{
                             Authorization:`Bearer ${token}`
                         }
@@ -80,7 +80,7 @@ const PaymentForm=({totalAmount,onClose,setIsCheckingOut})=>{
             
             alert('Cash payment selected. Please prepare the cash for delivery.');
             //add order to database
-            await axios.post('http://127.0.0.1:8000/orders/addOrder',{items:items,date:today,amount:totalAmount},{
+            await axios.post('http://127.0.0.1:8000/orders/addOrder',{items:items,date:today,amount:totalAmount,mode:paymentMethod},{
                 headers:{
                     Authorization:`Bearer ${token}`
                 }
