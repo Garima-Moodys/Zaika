@@ -3,6 +3,7 @@ import axios from "axios";
 import styles from "../css/Menu.module.css";
 import MenuRender from "./MenuRender";
 
+
 export default function Menu() {
   const [categories, setCategories] = useState([]);
   const [foodItems, setFooditems] = useState([]);

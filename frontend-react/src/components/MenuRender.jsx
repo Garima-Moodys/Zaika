@@ -1,10 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Spinner } from "@passfort/castle";
 import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
 import IconButton from "@mui/material/IconButton";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import styles from "../css/Menu.module.css";
 import { CartContext } from "../context/CartContext";
+import Search from "./Search";
 
 
 function CategoryCard(props) {
@@ -98,6 +99,17 @@ export default function MenuRender({
   handleCategoryClick,
   setContent,
 }) {
+
+  const [filteredContent,setFilteredContent]=useState([]);
+
+  useEffect(()=>{
+    if(currentContent==='categories'){
+      setFilteredContent(categories);
+    }else{
+      setFilteredContent(foodItems);
+    }
+  },[currentContent,categories,foodItems])
+
   if (loading) {
     return (
       <div className={styles.spinner}>
@@ -107,8 +119,10 @@ export default function MenuRender({
     );
   } else if (currentContent === "categories") {
     return (
+      <>
+      <Search cc={currentContent} content={categories} setFilteredContent={setFilteredContent}/>
       <ul className={styles.categories}>
-        {categories.map((category) => {
+        {filteredContent.map((category) => {
           return (
             <CategoryCard
               key={category.idCategory}
@@ -119,11 +133,12 @@ export default function MenuRender({
           );
         })}
       </ul>
+      </>
     );
   } else {
     return (
       <>
-        <p style={{ position: "relative", left: "7%", top: "30px" }}>
+        <div style={{display:'flex',alignItems:'center',justifyContent:'center',margin:'0 5%'}}>
           <IconButton
             onClick={() => {
               setContent("categories");
@@ -131,9 +146,12 @@ export default function MenuRender({
           >
             <ArrowBackIcon sx={{ fontSize: 50 }} />
           </IconButton>
-        </p>
+          <div style={{flex:'1'}}>
+            <Search cc={currentContent} content={foodItems} setFilteredContent={setFilteredContent}/>
+          </div>
+        </div>
         <ul className={styles.categories}>
-          {foodItems.map((meal) => {
+          {filteredContent.map((meal) => {
             return (
               <FoodCard
                 key={meal.idMeal}
