@@ -41,6 +41,11 @@ async def createOrder(db:db_dependency,user:user_dependency,order:CreateOrder):
     db.add(create_order)
     db.commit()
 
+@router.get('/allOrders',status_code=status.HTTP_200_OK)
+async def getAllOrders(db:db_dependency):
+    orders=db.query(Orders).all()
+    return orders
+
 @router.get('/',status_code=status.HTTP_200_OK)
 async def getOrders(db:db_dependency,user:user_dependency):
     if not user:

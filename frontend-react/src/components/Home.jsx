@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import bgImg1 from '../assests/breakfast.jpg';
 import bgImg2 from '../assests/dinner.avif';
@@ -24,6 +24,55 @@ function SectionDiscover(){
         </div>
         <div><img src={restaurant}/></div>
     </div>
+}
+
+function MostOrderedDish(){
+    const [orders,setOrders]=useState([]);
+
+    useEffect(()=>{
+        axios.get('http://127.0.0.1:8000/orders/allOrders').then((response)=>{
+            setOrders(response.data);
+        }).catch(error=>console.log(error))
+    },[])
+
+    // Get the current date
+    const currentDate = new Date();
+
+    // Get the date 30 days ago
+    const pastDate = new Date();
+    pastDate.setDate(currentDate.getDate() - 30);
+
+    // Format the dates as YYYY-MM-DD (ISO 8601 format)
+    const startDate = pastDate.toISOString().split('T')[0];
+    const endDate = currentDate.toISOString().split('T')[0]; 
+
+    const filteredOrders=orders.filter(order=>order.order_date>=startDate && order.order_date<=endDate);
+    const famous_item=[{item_name:'',count:0},];
+    const count_items={};
+    for(let i=0;i<filteredOrders.length;i++){
+        for(let j=0;j<filteredOrders[i].items.length;j++){
+            if(filteredOrders[i].items[j].item_name in count_items){
+                count_items[filteredOrders[i].items[j].item_name]++;
+            }else{
+                count_items[filteredOrders[i].items[j].item_name]=1;
+            }
+
+            if(famous_item.count===0 || count_items[filteredOrders[i].items[j].item_name]>famous_item[0].count){
+                famous_item[0].item_name=filteredOrders[i].items[j].item_name;
+                famous_item[0].count=count_items[filteredOrders[i].items[j].item_name];
+                famous_item.splice(1);
+            }else if(count_items[filteredOrders[i].items[j].item_name]===famous_item[0].count){
+                const new_famous={item_name:filteredOrders[i].items[j].item_name,count:count_items[filteredOrders[i].items[j].item_name]};
+                famous_item.push(new_famous);
+            }
+        }
+    }
+    return <div className={styles.famousDish}>
+            <h1><span style={{fontFamily:'sans-serif',color:'yellow',fontSize:'50px'}}>MOST ORDERED DISH</span><br/>LAST 30 DAYS </h1>
+            <div className={styles.dish}>
+                {famous_item.map(item=><div>{item.item_name}</div>)}
+            </div>
+        </div>
 }
 
 function MealCard(props){
@@ -103,7 +152,7 @@ export default function Home(){
         </div>
         <SectionDiscover/>
         <SectionMenu/>
+        <MostOrderedDish/>
         <SectionContact/>
-        
     </>
 }

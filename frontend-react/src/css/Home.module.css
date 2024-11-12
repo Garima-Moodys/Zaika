@@ -148,3 +148,34 @@
 .contact button {
   color: black;
 }
+
+.famousDish {
+  text-align: center;
+  border: 2px solid lightgray;
+  background-color: black;
+  margin: 2%;
+  padding: 3%;
+}
+
+.famousDish h1 {
+  font-family: "Times New Roman, Times, serif";
+  color: white;
+  font-size: 40px;
+  margin-bottom: 3%;
+  line-height: 30px;
+}
+
+.dish {
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dish div {
+  color: white;
+  padding: 20px;
+  font-size: medium;
+  border: 1px solid gray;
+  font-family: "Times New Roman", Times, serif;
+}
