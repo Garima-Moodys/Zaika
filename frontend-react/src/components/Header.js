@@ -33,6 +33,7 @@ export default function Header() {
           <NavLink to="/menu">MENU</NavLink>
           <NavLink to="/booking">BOOK TABLE</NavLink>
           <NavLink to="/reviews">REVIEWS</NavLink>
+          <NavLink to="/faq">FAQ</NavLink>
         </div>
         <div className={styles.icons}>
           <button onClick={clickHandle}>

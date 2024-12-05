@@ -1,0 +1,28 @@
+/* .faq {
+} */
+
+.faq h1 {
+  font-size: 50px;
+  letter-spacing: 4px;
+  font-weight: bolder;
+  height: 60px;
+  color: black;
+}
+
+.faq_heading {
+  padding: 5% 20%;
+  height: 250px;
+}
+
+.faq_heading p {
+  color: gray;
+  font-family: "Arial";
+  font-size: 15px;
+  text-shadow: 1px 0.5px gray;
+}
+
+.qa {
+  background-color: rgb(237, 235, 235);
+  padding: 5% 20%;
+  text-align: justify;
+}

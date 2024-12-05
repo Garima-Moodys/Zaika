@@ -11,6 +11,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { UserContext } from "./context/UserContext";
 import { useContext } from "react";
 import Reviews from "./components/Reviews";
+import Faq from "./components/Faq";
 
 function App() {
   const { token } = useContext(UserContext);
@@ -37,6 +38,7 @@ function App() {
             token == null ? <Navigate to="/login" replace /> : <Reviews />
           }
         />
+        <Route path="/faq" element={<Faq />} />
       </Routes>
       <Footer />
     </>
